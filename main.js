@@ -1,8 +1,6 @@
-const arr = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+// コインを一回投げて「表」か「裏」を返す関数
+function coinToss() {
+  return Math.random() < 0.5 ? "表" : "裏";
+}
 
-const sum = arr.reduce((acc, curr) => acc + curr, 0);
-
-const average = sum / arr.length;
-
-console.log(sum);
-console.log(average);
+console.log(coinToss());
