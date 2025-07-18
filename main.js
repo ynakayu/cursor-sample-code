@@ -1,8 +1,8 @@
-// コインを1回投げて「表」か「裏」を返す関数
-function coinToss() {
-  // Math.random()は0以上1未満のランダムな数を生成
-  // 0.5以上なら「表」、それ以外は「裏」
-  return Math.random() >= 0.5 ? '表' : '裏';
-}
+const arr = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
-console.log(`コインを投げた結果: ${coinToss()}`);
+const sum = arr.reduce((acc, curr) => acc + curr, 0);
+
+const average = sum / arr.length;
+
+console.log(sum);
+console.log(average);
