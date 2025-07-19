@@ -13,6 +13,6 @@ document.getElementById('warikan-form').addEventListener('submit', function(e) {
     return;
   }
 
-  const warikan = Math.ceil(total / people);
+  const warikan = Math(total / people);
   resultDiv.textContent = `1人あたりの金額は ${warikan} 円です。`;
 });
