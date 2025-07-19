@@ -9,35 +9,17 @@
       text-align: center;
       margin-top: 50px;
     }
-    .input-group {
-      margin: 20px 0;
-    }
-    #diceCount {
-      width: 60px;
-      padding: 5px;
-      margin: 0 10px;
-    }
     #resultArea {
       margin-top: 20px;
-      font-size: 1.5em;
+      font-size: 2em;
       color: #333;
-    }
-    #totalArea {
-      margin-top: 10px;
-      font-size: 1.2em;
-      color: #666;
     }
   </style>
 </head>
 <body>
   <h1>サイコロシミュレーター</h1>
-  <div class="input-group">
-    <label for="diceCount">サイコロの数:</label>
-    <input type="number" id="diceCount" value="1" min="1" max="10">
-  </div>
   <button id="rollBtn">サイコロをふる</button>
   <div id="resultArea">ここに出た目が表示されます</div>
-  <div id="totalArea"></div>
   <script src="main.js"></script>
 </body>
 </html>
