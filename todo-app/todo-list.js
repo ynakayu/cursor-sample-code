@@ -6,6 +6,7 @@ class TodoApp {
         this.addButton = document.getElementById('addButton');
         this.taskList = document.getElementById('taskList');
         this.deleteButton = document.getElementById('deleteButton');
+        this.completeButton = document.getElementById('completeButton');
         this.editingTaskId = null; // 編集中のタスクID
         
         this.init();
@@ -23,6 +24,7 @@ class TodoApp {
             }
         });
         this.deleteButton.addEventListener('click', () => this.deleteSelectedTasks());
+        this.completeButton.addEventListener('click', () => this.completeSelectedTasks());
         
         // 初期表示
         this.renderTasks();
@@ -136,6 +138,7 @@ class TodoApp {
     updateDeleteButtonState() {
         const hasSelectedTasks = this.tasks.some(task => task.selected);
         this.deleteButton.disabled = !hasSelectedTasks;
+        this.completeButton.disabled = !hasSelectedTasks;
     }
     
     renderTasks() {
@@ -295,6 +298,30 @@ class TodoApp {
             }
         }, 3000);
     }
+
+    completeSelectedTasks() {
+        const selectedTasks = this.tasks.filter(task => task.selected);
+        
+        if (selectedTasks.length === 0) {
+            this.showMessage('完了にするタスクを選択してください。', 'warning');
+            return;
+        }
+        
+        // 選択されたタスクを完了状態にする
+        selectedTasks.forEach(task => {
+            task.completed = true;
+            task.selected = false; // 選択状態をリセット
+        });
+        
+        // ローカルストレージに保存
+        this.saveTasks();
+        
+        // 表示を更新
+        this.renderTasks();
+        
+        // 成功メッセージを表示
+        this.showMessage(`${selectedTasks.length}個のタスクを完了にしました！`, 'success');
+    }
 }
 
 // CSSアニメーションを追加
@@ -337,6 +364,35 @@ style.textContent = `
     
     .cancel-button:hover {
         background: #da190b;
+    }
+
+    .delete-button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .complete-button {
+        padding: 10px 20px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-right: 10px;
+    }
+
+    .complete-button:hover {
+        background: #45a049;
+        transform: translateY(-1px);
+    }
+
+    .complete-button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
     }
 `;
 document.head.appendChild(style);
